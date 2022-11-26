@@ -16,14 +16,14 @@
 <style>
  @import url('https://fonts.googleapis.com/css?family=Prompt:400,700&display=swap');
 
- #loading {
+/*  #loading {
   width: 100vw;
   height: 100vh;
   top: 300;
   left: 0;
-  //position: fixed;
-  //display: block;
-/*   opacity: 0.7; */
+  position: fixed;
+  display: block;
+  opacity: 0.7;
   background-color: #0079d7;
   z-index: 99;
   text-align: center;
@@ -31,7 +31,7 @@
   color: #0079d7;
   display: table-cell;
   vertical-align: middle;
-    }
+    } */
 body { 
  font-family: "Prompt", sans-serif;
   } 
@@ -70,7 +70,7 @@ body{
 }
 </style>
    <body>
-       <div class="container">
+       <div class="container" id="loading">
         <div class="text">
            ระบบจองรถ
          </div>
