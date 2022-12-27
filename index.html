@@ -49,8 +49,8 @@
   }
 
   h1 {
-    font-size: 35px;
-    font-weight: bold;
+    font-size: 30px;
+/*     font-weight: bold; */
     word-break: break-all;
     color: #fff;
     text-shadow: 3px 3px 5px #000000;
@@ -156,65 +156,56 @@
     vertical-align: middle;
   }
 
- 
+ .card{
+      background-color:rgba(255,255,255,0);
+      backdrop-filter: blur(100px);
+      padding: 20px;
+      height: 550px;
+      max-width: 650px;
+      text-align: center;
+      //justify-content:center;
+      margin: 40px auto;
+       border-radius: 10px;
+       border: 1px solid #fff;
+      //box-shadow: 10px 10px 15px rgb(193, 182, 182), -6px -6px 15px #eee;
+     }
 </style>
 
 <body>
+<div class="card">
+<center><h1>ระบบจองรถ</h1></center>
+  
+<div class="row">
+   <div class="d-flex justify-content-center mt-4">
+      <button type="button" style="font-size:22px; color:black;" class="btn btn-outline-light  col-12 text-white" data-bs-toggle="modal" data-bs-target="#myModal1">ฟอร์มจองรถ</button>
+       </div>
 
+    <div class="d-flex justify-content-center mt-4">
+      <button type="button" style="font-size:22px; color:black;" class="btn btn-outline-light  col-12 text-white" data-bs-toggle="modal" data-bs-target="#myModal2">คิวที่อนุมัติแล้ว</button>
+        </div>
 
-  <!-- MAIN (Center website) -->
-  <div class="container">
+     <div class="d-flex justify-content-center mt-4">  
+      <button type="button" style="font-size:22px; color:black;" class="btn btn-outline-light  col-12 text-white" data-bs-toggle="modal" data-bs-target="#myModal3">คิวที่รออนุมัติ</button>
+         </div>
+
+     <div class="d-flex justify-content-center mt-4">
+     <button type="button" style="font-size:22px; color:black;" class="btn btn-outline-light  col-12 text-white" data-bs-toggle="modal" data-bs-target="#myModal4">บันทึกไมล์ออก</button>
+        </div>
+
+     <div class="d-flex justify-content-center mt-4">
+    <button type="button" style="font-size:22px; color:black;" class="btn btn-outline-light  col-12 text-white" data-bs-toggle="modal" data-bs-target="#myModal5">บันทึกไมล์เข้า</button>
+        </div>
+    
+     <div class="d-flex justify-content-center mt-4">
+    <button type="button" style="font-size:22px; color:black;" class="btn btn-outline-light  col-12 text-white" data-bs-toggle="modal" data-bs-target="#myModal6">ยกเลิกจองรถ</button>
+        </div>
+
    
-<center><img src="https://drive.google.com/uc?id=1-m9_MgPsYAGFK7Xvuc2sjIAEmr0wgxoO" width="100px" height="90px"></center>
-
-    <center>
-      <h1>ระบบจองรถ</h1>
-    </center>
-    <hr style="color: #fff;">
-
-
-
-    <!-- Portfolio Gallery Grid -->
-    <div class="row">
-      <div class="column">
-        <div class="content" data-bs-toggle="modal" data-bs-target="#myModal1">
-          <h3>ฟอร์มจองรถ</h3>
-        </div>
-      </div>
-      <div class="column">
-        <div class="content" data-bs-toggle="modal" data-bs-target="#myModal2">
-          <h3>คิวที่อนุมัติแล้ว</h3>
-        </div>
-      </div>
-      <div class="column">
-        <div class="content" data-bs-toggle="modal" data-bs-target="#myModal3">
-          <h3>คิวที่รออนุมัติ</h3>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content" data-bs-toggle="modal" data-bs-target="#myModal4">
-          <h3>บันทึกไมล์ออก</h3>
-        </div>
-      </div>
-      <div class="column">
-        <div class="content" data-bs-toggle="modal" data-bs-target="#myModal5">
-          <h3>บันทึกไมล์เข้า</h3>
-        </div>
-      </div>
-
-
-      <div class="column">
-        <div class="content" data-bs-toggle="modal" data-bs-target="#myModal6">
-          <h3>ยกเลิกจองรถ</h3>
-        </div>
-
-        <!-- END MAIN -->
       </div>
     </div>
 
 
-    <hr style="color: #fff;">
+   
 
     <!-- The Modal -->
     <div class="modal" id="myModal1">
