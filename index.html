@@ -175,7 +175,12 @@
 		
 <div class="card">
 <center><h1>ระบบจองรถ</h1></center>
-  
+	
+  <center>
+     <span id="datenew" class="datenew px-3" style="color:white" onload="datenew()"></span>
+     <span id="MyClockDisplay" class="clock  px-3" style="color:white" onload="showTime()"></span>
+  </center>
+	
 <div class="row">
    <div class="d-flex justify-content-center mt-4">
       <button type="button" style="font-size:22px;" class="btn btn-outline-light  col-12 text-white" data-bs-toggle="modal" data-bs-target="#myModal1">ฟอร์มจองรถ</button>
@@ -414,7 +419,46 @@ $(window).load(function(){
 </script> -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>	
 	
-	
+<script>
+/** ส่วนของวันที่นำไปแสดงคู่นาฬิกาดิจิตอล */
+datenew(); 
+function datenew(){
+      var now = new Date();
+      var thday = new Array ("อาทิตย์","จันทร์",
+      "อังคาร","พุธ","พฤหัส","ศุกร์","เสาร์");
+      var thmonth = new Array ("มกราคม","กุมภาพันธ์","มีนาคม",
+      "เมษายน","พฤษภาคม","มิถุนายน", "กรกฎาคม","สิงหาคม","กันยายน",
+      "ตุลาคม","พฤศจิกายน","ธันวาคม");
+
+      var datenew = "วัน" + thday[now.getDay()]+ "ที่ "+ now.getDate()+ " " +
+      thmonth[now.getMonth()]+ " " + (now.getFullYear()+543);
+      document.getElementById("datenew").innerText = datenew;
+      document.getElementById("datenew").textContent = datenew;
+      }
+showTime();  
+/** จาวาสคริปต์ นาฬิกาดิจิตอล ### Ref.  https://codepen.io/afarrar/pen/JRaEjP ### **/      
+      function showTime() {
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var dot =document.textContent = '.';
+
+        if(s%2 == 1){
+          dot = document.textContent = '.';
+        }else{
+          dot = document.textContent = '\xa0';
+        }
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+        //var time = h + ":" + m + ":" + s + " " + session;
+        var time = h + ":" + m + ":" + s + '' +dot;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+        setTimeout(showTime, 1000);
+      }          
+ </script>	
 	
 
 </body>
