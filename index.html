@@ -172,6 +172,43 @@
 </style>
 
 <body>
+	
+	<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+     <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">&nbspประกาศ</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+     
+    
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <center><h4>ตอนนี้มีรถเบอร์ 9 แค่คันเดียวนะครับ</h4></center>
+       <img src= "https://sv1.img.in.th/dWPow.png" class="rounded" alt="1" border="0" width="100%" height="100%" >
+       <br>
+        <button type="button" style="float:right" class="btn btn-danger" data-bs-dismiss="modal">กดปิด</button>
+      </div>
+
+
+ <!-- Modal footer -->
+      <!-- <div class="modal-footer">
+        <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+      </div> -->
+
+
+    </div>
+  </div>
+</div>  
+
+	
 <div class="card">
 <center><h1>ระบบจองรถ</h1></center>
   
@@ -384,7 +421,17 @@
       });
     </script>
 
-
+<script>
+ //เรีกยก modal ออกมาแสดง	
+var show = function(){
+    $('#myModal').modal('show');
+};
+ 
+/* กำหนดเวลาหลังเปิดหน้าเว็บ ว่าจะให้แสดงหลังโหลดหน้าเว็บแล้วกี่วินาที  เช่น 2000 = 2 วิ */
+$(window).load(function(){
+    var timer = window.setTimeout(show,0);
+});
+</script>
 
 </body>
 
