@@ -41,7 +41,7 @@
       background-color:rgba(255,255,255,0);
       backdrop-filter: blur(15px);
       padding: 20px;
-      height: auto;
+      height: 620px;
       max-width: 650px;
       text-align: center;
       //justify-content:center;
@@ -175,16 +175,17 @@
 		
 <div class="card">
 
-	<center><h1>ระบบจองรถ</h1></center>
+  	<center><h1>ระบบจองรถ</h1></center>
+  
+ 
+	<div class="row">
 	
-<div class="row">
-	
-  <center>
+ <center>
      <span id="datenew" class="datenew px-3" style="color:white" onload="datenew()"></span>
-<!--      <span id="MyClockDisplay" class="clock  px-3" style="color:white" onload="showTime()"></span> -->
+     <span id="MyClockDisplay" class="clock  px-3" style="color:white" onload="showTime()"></span>
   </center>
 	
- <div class="d-flex justify-content-center mt-4">
+   <div class="d-flex justify-content-center mt-4">
       <button type="button" style="font-size:22px;" class="btn btn-outline-light  col-12 text-white" data-bs-toggle="modal" data-bs-target="#myModal1">ฟอร์มจองรถ</button>
        </div>
 
@@ -416,7 +417,6 @@ $(window).load(function(){
 	  imageHeight: 200,
 	  imageAlt: 'Custom image',
 	})
-
          }
 </script> -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>	
@@ -432,7 +432,7 @@ function datenew(){
       "เมษายน","พฤษภาคม","มิถุนายน", "กรกฎาคม","สิงหาคม","กันยายน",
       "ตุลาคม","พฤศจิกายน","ธันวาคม");
 
-      var datenew = "วัน" + thday[now.getDay()]+ "ที่ "+ now.getDate()+ " " +
+      var datenew = "วัน " + thday[now.getDay()] + " ที่ "+ now.getDate()+ " " +
       thmonth[now.getMonth()]+ " " + (now.getFullYear()+543);
       document.getElementById("datenew").innerText = datenew;
       document.getElementById("datenew").textContent = datenew;
@@ -455,7 +455,7 @@ showTime();
         m = m < 10 ? "0" + m : m;
         s = s < 10 ? "0" + s : s;
         //var time = h + ":" + m + ":" + s + " " + session;
-        var time = h + ":" + m + ":" + s + '' +dot;
+        var time = h + ":" + m + ":" + s + '';
         document.getElementById("MyClockDisplay").innerText = time;
         document.getElementById("MyClockDisplay").textContent = time;
         setTimeout(showTime, 1000);
