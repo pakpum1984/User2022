@@ -164,6 +164,28 @@
 </style>
 
 <body onload="onload()">
+	
+	    <!-- The Modal -->
+<div class="modal fade" id="myModal999">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+     <!-- Modal body -->
+      <div class="modal-body">
+         <button type="button" style="float:right;" class="btn-close" data-bs-dismiss="modal"></button>
+       <!-- <h3 style="color : red;">ประกาศ</h3>
+        <center><h5>ขณะนี้มีรถเบอร์ 9 <br>เหลือให้บริการเพียงคันเดียวนะครับ</h5></center> -->
+        <center><h3 style="color : blue;">14 พฤษภาคม 2566</h3></center>
+       <a href="https://www.thaipbs.or.th/now/infographic/112"><img src= "https://d3dyak49qszsk5.cloudfront.net/2566_2_b3d2a90e1d.jpg" class="rounded" alt="1" border="0" width="100%" height="100%" ></a>
+     
+        <button type="button" style="float:right" class="btn btn-danger" data-bs-dismiss="modal">กดปิด</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+	
 
 <div class="card">
 
@@ -380,6 +402,18 @@
       </div>
     </div>
     
+	 <script>
+ //เรีกยก modal ออกมาแสดง	
+var show = function(){
+    $('#myModal999').modal('show');
+};
+ 
+/* กำหนดเวลาหลังเปิดหน้าเว็บ ว่าจะให้แสดงหลังโหลดหน้าเว็บแล้วกี่วินาที  เช่น 2000 = 2 วิ */
+$(window).load(function(){
+    var timer = window.setTimeout(show,0);
+});
+</script>
+	
 
     <script>
       $(window).load(function () {
