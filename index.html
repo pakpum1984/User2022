@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base target="_top">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจองรถ</title>
-    <link rel="shortcut icon" href="https://pngimg.com/d/porsche_PNG10622.png" sizes="16x16 32x32 64x64" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calendar</title>
+   <link rel="shortcut icon" href="https://pngimg.com/d/porsche_PNG10622.png" sizes="16x16 32x32 64x64" />
     <link rel="apple-touch-icon" href="https://pngimg.com/d/porsche_PNG10622.png" sizes="180x180" />
+  
+    
+  
     <!-- Tailwind CSS CDN -->
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
@@ -205,11 +206,17 @@
                     <option value="จาฬุพร อินวงศ์">จาฬุพร อินวงศ์</option>
                     <option value="มัธติกาล บุญโทย">มัธติกาล บุญโทย</option>
                     <option value="สุชาติ กันคำ">สุชาติ กันคำ</option>
-                    <option value="กมลทิพย์ บุญหมื่น">กมลทิพย์ บุญหมื่น</option>
-          <option value="ถวัลย์ ใจงาม">ถวัลย์ ใจงาม</option>
-          <option value="อภิสรา สุทธจันทร์">อภิสรา สุทธจันทร์</option>
-          <option value="พิบูลย์  บุญมี">พิบูลย์  บุญมี</option>
-          <option value="ไกรวุฒิ ต๋าคำ">ไกรวุฒิ ต๋าคำ</option>
+                    <option value="ถวัลย์ ใจงาม">ถวัลย์ ใจงาม</option>
+                    <option value="อภิสรา สุทธจันทร์">อภิสรา สุทธจันทร์</option>
+                     <option value="ชาญวิทย์  สุวรรณรัตน์">ชาญวิทย์  สุวรรณรัตน์</option>
+                     <option value="นิคม จินะจันตา">นิคม จินะจันตา</option>
+                     <option value="กมลทิพย์ บุญหมื่น">กมลทิพย์ บุญหมื่น</option>
+                    <option value="ชนัฐปภา  ขว้างมา">ชนัฐปภา  ขว้างมา</option>
+                    <option value="พิบูลย์ บุญมี">พิบูลย์ บุญมี</option>
+                    <option value="ไกรวุฒิ ต๋าคำ">ไกรวุฒิ ต๋าคำ</option>
+                    <option value="สยาม  กิติกร">สยาม  กิติกร</option>
+                    <option value="ตรีธนา  ใจคำ">ตรีธนา  ใจคำ</option>
+                    <option value="อดุลย์ มาแปง">อดุลย์ มาแปง</option>
         </datalist>
     </div>
 
@@ -306,7 +313,7 @@
         </select>
     </div>
 
-   
+   <input type="hidden" name="referer" id="referer">
 
     <!-- อื่นๆ -->
     <div class="form-group col-span-2 sm:col-span-2">
@@ -396,7 +403,7 @@
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <!-- Header -->
         <div class="bg-green-500 text-white py-3 px-6">
-            <h5 class="text-lg font-semibold">ปฏิทินจองรถ</h5>
+            <h5 class="text-lg font-semibold">ปฏิทินจองรถยนต์</h5>
           ท่านสามารถกดตรงวันที่เพื่อจองรถได้เลย
         </div>
         <!-- Body -->
@@ -444,10 +451,12 @@
 
 
     <script>
-      
+       window.onload = function() {
+        document.getElementById('referer').value = window.location.hostname;
+    };
       
        var googleScriptUrl = 'https://script.google.com/macros/s/AKfycbxVVUfSwT1cSTb2oZWo0wXVHthaSIW7L0RD22sNMpHv6tSbqsEpn0hmODDmrf0siKVG/exec'; 
-      
+      var googleScriptUrlbook = 'https://script.google.com/macros/s/AKfycbyyhPanSdQPBRFx5QpCbNtJm4WYRdhumqsVQqxHwFMh4j42L2fMCnCOcD8uoU42cs0C/exec'; 
       
          document.getElementById('togglePassword').addEventListener('click', function () {
         const passwordField = document.getElementById('password');
@@ -1137,6 +1146,7 @@ function closeModal() {
   var nameendTime = document.getElementById('nameendTime').value;
   var namedrivestatus = document.getElementById('namedrivestatus').value;
   var nameother = document.getElementById('nameother').value;
+     var referer = document.querySelector('input[name="referer"]').value;
 
   // ตรวจสอบข้อมูลที่จำเป็น
   if (namebook == "") {
@@ -1274,48 +1284,67 @@ const isDuplicate = cachedEventsData.some(event => {
 
   // หากไม่มีข้อมูลซ้ำ ส่งข้อมูลไปยัง Google Script
   var formData = new FormData(document.getElementById("bookmyForm"));
-  formData.append('action', 'submitForm');
+formData.append('action', 'submitForm');
+formData.append('referer', referer);
 
-  fetch(googleScriptUrl, {
-    method: 'POST',
-    body: formData
+fetch(googleScriptUrlbook, {
+  method: 'POST',
+  body: formData
+})
+  .then(response => response.text())
+  .then(data => {
+    if (data === "true") {
+      // เคลียร์ฟอร์มหลังจากบันทึกข้อมูล
+      document.getElementById('namecar').value = "";
+      document.getElementById('nameloca').value = "";
+      document.getElementById('namestartDate').value = "";
+      document.getElementById('nameendDate').value = "";
+      document.getElementById('namestartTime').value = "";
+      document.getElementById('nameendTime').value = "";
+      document.getElementById('namedrivestatus').value = "";
+      document.getElementById('nameother').value = "";
+
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: '<h4>บันทึกข้อมูลสำเร็จ</h4>',
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        updateCalendar();
+        closeModal();
+        // location.reload();
+      });
+    } else if (data === "Unauthorized Request: Invalid Referer") {
+      // แสดง alert หาก referer ไม่ถูกต้อง
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: '<h4>การร้องขอถูกปฏิเสธ เนื่องจาก Referer ไม่ถูกต้อง</h4>',
+        showConfirmButton: true,
+        confirmButtonText: 'OK',
+      });
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: '<h4>มีการจองวันที่และช่วงเวลานี้แล้ว</h4>',
+        showConfirmButton: true,
+        confirmButtonText: 'OK',
+      });
+    }
   })
-    .then(response => response.json())
-    .then(data => {
-      if (data == true) {
-        document.getElementById('namecar').value = "";
-        document.getElementById('nameloca').value = "";
-        document.getElementById('namestartDate').value = "";
-        document.getElementById('nameendDate').value = "";
-        document.getElementById('namestartTime').value = "";
-        document.getElementById('nameendTime').value = "";
-        document.getElementById('namedrivestatus').value = "";
-        document.getElementById('nameother').value = "";
-
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: '<h4>บันทึกข้อมูลสำเร็จ</h4>',
-          showConfirmButton: false,
-          timer: 1500,
-        }).then(() => {
-          updateCalendar();
-          closeModal();
-          //location.reload();
-        });
-      } else {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: '<h4>มีการจองวันที่และช่วงเวลานี้แล้ว</h4>',
-          showConfirmButton: true,
-          confirmButtonText: 'OK',
-        });
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
+  .catch(error => {
+    console.error('Error:', error);
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: '<h4>เกิดข้อผิดพลาดในการเชื่อมต่อ</h4>',
+      showConfirmButton: true,
+      confirmButtonText: 'OK',
     });
+  });
+
 }
       
       
