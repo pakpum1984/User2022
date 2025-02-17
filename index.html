@@ -396,8 +396,14 @@
 
 
     <script>
+
+//         // เรียก fetchNames() ทันทีเมื่อ login สำเร็จ
+// window.onload = fetchNames;
+
+        
        window.onload = function() {
         document.getElementById('referer').value = window.location.hostname;
+           fetchNames();
     };
       
            // ป้องกันการคลิ๊กขวา
@@ -470,8 +476,7 @@ function getAllowedCars(statusLogin) {
   return [];
 }
 
-// เรียก fetchNames() ทันทีเมื่อ login สำเร็จ
-window.onload = fetchNames;
+
 
 
       
