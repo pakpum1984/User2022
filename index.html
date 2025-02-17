@@ -400,7 +400,26 @@
         document.getElementById('referer').value = window.location.hostname;
     };
       
-      
+           // ป้องกันการคลิ๊กขวา
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+    alert('การคลิ๊กขวาถูกปิดใช้งาน');
+});
+// ป้องกันปุ่มลัด (เช่น Ctrl + U, F12)
+document.addEventListener('keydown', function(event) {
+    // ป้องกัน Ctrl + U
+    if (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.code === 'KeyU')) {
+        event.preventDefault();
+        alert('การดู source code ถูกปิดใช้งาน');
+    }
+    // ป้องกัน F12
+    if (event.key === 'F12' || event.code === 'F12') {
+        event.preventDefault();
+        alert('การเปิด Developer Tools ถูกปิดใช้งาน');
+    }
+});
+
+        
 function fetchNames() {
   // ดึงค่า statuslogin จาก localStorage
   const statusLogin = localStorage.getItem("statuslogin");
