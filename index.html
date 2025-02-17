@@ -348,7 +348,7 @@
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <!-- Header -->
         <div class="bg-green-500 text-white py-3 px-6">
-            <h5 class="text-lg font-semibold">ปฏิทินจองรถยนต์</h5>
+            <h5 class="text-lg font-semibold">ปฏิทินจองรถ</h5>
           ท่านสามารถกดตรงวันที่เพื่อจองรถได้เลย
         </div>
         <!-- Body -->
@@ -1272,37 +1272,7 @@ function closeModal() {
     return;
   }
 
-  // ตรวจสอบข้อมูลซ้ำ
-const isDuplicate = cachedEventsData.some(event => {
-  // ข้ามการตรวจสอบถ้าชื่อรายการเป็น "ฝากงาน" หรือ "ติดรถไปติดต่องานด้วย"
-  if (event.title === "ฝากงาน" || event.title === "ติดรถไปติดต่องานด้วย") {
-    return false;
-  }
-
-  const eventStartDateTime = moment(`${event.startday} ${event.starttime}`, 'YYYY-MM-DD HH:mm');
-  const eventEndDateTime = moment(`${event.endday} ${event.endtime}`, 'YYYY-MM-DD HH:mm');
-  const newStartDateTime = moment(`${namestartDate} ${namestartTime}`, 'YYYY-MM-DD HH:mm');
-  const newEndDateTime = moment(`${nameendDate} ${nameendTime}`, 'YYYY-MM-DD HH:mm');
-
-  return (
-    event.title === namecar && // ตรวจสอบว่ารถที่จองตรงกัน
-    newStartDateTime.isBefore(eventEndDateTime) && // เวลาที่ต้องการจองเริ่มก่อนที่อีกเหตุการณ์จะจบ
-    newEndDateTime.isAfter(eventStartDateTime) // เวลาที่ต้องการจองจบหลังจากอีกเหตุการณ์เริ่ม
-  );
-});
-
-
-
-  if (isDuplicate) {
-    Swal.fire({
-      position: 'center',
-      icon: 'error',
-      title: '<h4>มีการจองวันที่และช่วงเวลานี้แล้ว</h4>',
-      showConfirmButton: true,
-      confirmButtonText: 'OK',
-    });
-    return;
-  }
+ 
 
   // หากไม่มีข้อมูลซ้ำ ส่งข้อมูลไปยัง Google Script
   var formData = new FormData(document.getElementById("bookmyForm"));
