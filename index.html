@@ -1153,7 +1153,7 @@ function closeModal() {
     document.getElementById('nameendDate').min = todayDate;
 
 
-   function booksubmitForm() {
+function booksubmitForm() {
   event.preventDefault();
   Swal.fire({
     position: 'center',
@@ -1173,7 +1173,7 @@ function closeModal() {
   var nameendTime = document.getElementById('nameendTime').value;
   var namedrivestatus = document.getElementById('namedrivestatus').value;
   var nameother = document.getElementById('nameother').value;
-     var referer = document.querySelector('input[name="referer"]').value;
+  var referer = document.querySelector('input[name="referer"]').value;
 
   // ตรวจสอบข้อมูลที่จำเป็น
   if (namebook == "") {
@@ -1277,97 +1277,99 @@ function closeModal() {
     return;
   }
 
-//  const duplicateEvent = cachedEventsData.find(event => {
-//   const eventStart = moment(event.startday + ' ' + event.starttime, 'YYYY-MM-DD HH:mm');
-//   const eventEnd = moment(event.endday + ' ' + event.endtime, 'YYYY-MM-DD HH:mm');
-//   const formStart = moment(namestartDate + ' ' + namestartTime, 'YYYY-MM-DD HH:mm');
-//   const formEnd = moment(nameendDate + ' ' + nameendTime, 'YYYY-MM-DD HH:mm');
+  // ถ้า namedrivestatus เป็น "ขับเอง" ให้ข้ามการตรวจสอบข้อมูลซ้ำ
+  if (namedrivestatus !== "ขับเอง") {
+    const duplicateEvent = cachedEventsData.find(event => {
+      const eventStart = moment(event.startday + ' ' + event.starttime, 'YYYY-MM-DD HH:mm');
+      const eventEnd = moment(event.endday + ' ' + event.endtime, 'YYYY-MM-DD HH:mm');
+      const formStart = moment(namestartDate + ' ' + namestartTime, 'YYYY-MM-DD HH:mm');
+      const formEnd = moment(nameendDate + ' ' + nameendTime, 'YYYY-MM-DD HH:mm');
 
-//   const isExcludedTitle = ['ฝากงาน', 'ติดรถไปติดต่องานด้วย'].includes(namecar);
-//   const isDriverMatch = (event.driver === "ภาคภูมิ เรือนมูล");
-//   const isOverlap = (formStart.isSameOrBefore(eventEnd) && formEnd.isSameOrAfter(eventStart));
+      const isExcludedTitle = ['ฝากงาน', 'ติดรถไปติดต่องานด้วย'].includes(namecar);
+      const isDriverMatch = (event.driver === "ภาคภูมิ เรือนมูล");
+      const isOverlap = (formStart.isSameOrBefore(eventEnd) && formEnd.isSameOrAfter(eventStart));
 
-//   if (isExcludedTitle) {
-//     return false; // ถ้า title เป็นคำที่ไม่ต้องเช็คซ้ำ ให้ข้ามไปเลย
-//   }
+      if (isExcludedTitle) {
+        return false; // ถ้า title เป็นคำที่ไม่ต้องเช็คซ้ำ ให้ข้ามไปเลย
+      }
 
-//   return isDriverMatch && isOverlap;
-// });
+      return isDriverMatch && isOverlap;
+    });
 
-// if (duplicateEvent) {
-//   Swal.fire({
-//     position: 'center',
-//     icon: 'error',
-//     title: '<h4 style="font-size: 18px;">พนักงานขับรถมีคิวขับ ' + duplicateEvent.title + ' ไป ' + duplicateEvent.loca + '<br> ออกเดินทางเวลา ' + duplicateEvent.starttime + '-' + duplicateEvent.endtime +' น.<br>กรุณาจองขับไปเองหรือจองช่วงเวลาอื่น'+ '</h4>',
-//     showConfirmButton: true,
-//     confirmButtonText: 'OK',
-//   });
-//   return;
-// }
+    if (duplicateEvent) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: '<h4 style="font-size: 18px;">พนักงานขับรถมีคิวขับ ' + duplicateEvent.title + ' ไป ' + duplicateEvent.loca + '<br> ออกเดินทางเวลา ' + duplicateEvent.starttime + '-' + duplicateEvent.endtime +' น.<br>กรุณาจองขับไปเองหรือจองช่วงเวลาอื่น'+ '</h4>',
+        showConfirmButton: true,
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+  }
 
   // หากไม่มีข้อมูลซ้ำ ส่งข้อมูลไปยัง Google Script
   var formData = new FormData(document.getElementById("bookmyForm"));
-formData.append('action', 'submitForm');
-formData.append('referer', referer);
+  formData.append('action', 'submitForm');
+  formData.append('referer', referer);
 
-fetch(googleScriptUrlbook, {
-  method: 'POST',
-  body: formData
-})
-  .then(response => response.text())
-  .then(data => {
-    if (data === "true") {
-      // เคลียร์ฟอร์มหลังจากบันทึกข้อมูล
-      document.getElementById('namecar').value = "";
-      document.getElementById('nameloca').value = "";
-      document.getElementById('namestartDate').value = "";
-      document.getElementById('nameendDate').value = "";
-      document.getElementById('namestartTime').value = "";
-      document.getElementById('nameendTime').value = "";
-      document.getElementById('namedrivestatus').value = "";
-      document.getElementById('nameother').value = "";
-
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: '<h4>บันทึกข้อมูลสำเร็จ</h4>',
-        showConfirmButton: false,
-        timer: 1500,
-      }).then(() => {
-        updateCalendar();
-        closeModal();
-        // location.reload();
-      });
-    } else if (data === "Unauthorized Request: Invalid Referer") {
-      // แสดง alert หาก referer ไม่ถูกต้อง
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: '<h4>การร้องขอถูกปฏิเสธ เนื่องจาก Referer ไม่ถูกต้อง</h4>',
-        showConfirmButton: true,
-        confirmButtonText: 'OK',
-      });
-    } else {
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: '<h4>มีการจองวันที่และช่วงเวลานี้แล้ว</h4>',
-        showConfirmButton: true,
-        confirmButtonText: 'OK',
-      });
-    }
+  fetch(googleScriptUrlbook, {
+    method: 'POST',
+    body: formData
   })
-  .catch(error => {
-    console.error('Error:', error);
-    Swal.fire({
-      position: 'center',
-      icon: 'error',
-      title: '<h4>เกิดข้อผิดพลาดในการเชื่อมต่อ</h4>',
-      showConfirmButton: true,
-      confirmButtonText: 'OK',
-    });
-  });
+    .then(response => response.text())
+    .then(data => {
+      if (data === "true") {
+        // เคลียร์ฟอร์มหลังจากบันทึกข้อมูล
+        document.getElementById('namecar').value = "";
+        document.getElementById('nameloca').value = "";
+        document.getElementById('namestartDate').value = "";
+        document.getElementById('nameendDate').value = "";
+        document.getElementById('namestartTime').value = "";
+        document.getElementById('nameendTime').value = "";
+        document.getElementById('namedrivestatus').value = "";
+        document.getElementById('nameother').value = "";
 
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: '<h4>บันทึกข้อมูลสำเร็จ</h4>',
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          updateCalendar();
+          closeModal();
+          // location.reload();
+        });
+      } else if (data === "Unauthorized Request: Invalid Referer") {
+        // แสดง alert หาก referer ไม่ถูกต้อง
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: '<h4>การร้องขอถูกปฏิเสธ เนื่องจาก Referer ไม่ถูกต้อง</h4>',
+          showConfirmButton: true,
+          confirmButtonText: 'OK',
+        });
+      } else {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: '<h4>มีการจองรถคันนี้วันที่และช่วงเวลานี้แล้ว</h4>',
+          showConfirmButton: true,
+          confirmButtonText: 'OK',
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: '<h4>เกิดข้อผิดพลาดในการเชื่อมต่อ</h4>',
+        showConfirmButton: true,
+        confirmButtonText: 'OK',
+      });
+    });
 }
       
       
