@@ -72,59 +72,50 @@
       z-index: 1000;
    
     }
-
-    .modal-header {
-      background-color: #3b82f6;
+      
+         #modal .modal-header {
+      background-color: blue;
       color: white;
       padding: 1rem;
       border-top-left-radius: 0.5rem;
       border-top-right-radius: 0.5rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    #event-modal .relative,
-    #modal .relative {
-      padding: 0rem;
-      max-width: 90%;
-      margin: 0 auto;
-      box-sizing: border-box;
-    }
-
-    @media (min-width: 640px) {
-      #event-modal .relative,
-      #modal .relative {
-        max-width: 400px;
-      }
-    }
-
-    .modal-body {
+  
+   #modal .modal-body {
       flex: 1;
       overflow-y: auto;
       padding: 1rem;
-      
+      font-size: 15px;
     }
 
-    .modal-footer {
-      flex-shrink: 0;
-      background-color: #3b82f6;
+   #modal .modal-footer {
+     background-color: blue;
+      color: white;
       padding: 1rem;
       border-bottom-left-radius: 0.5rem;
       border-bottom-right-radius: 0.5rem;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: right;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .modal-footer button {
-      padding: 0.5rem 1rem;
-      border-radius: 0.25rem;
-      font-weight: 500;
-      transition: background-color 0.2s;
-    }
+         #modal .relative {
+  width: 90%;
+  max-width: 700px; /* ปรับค่าเริ่มต้นให้กว้างขึ้น */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 
-    .modal-footer button:hover {
-      filter: brightness(90%);
-    }
+@media (min-width: 768px) {
+  #modal .relative {
+    max-width: 700px; /* ขยายเพิ่มสำหรับแท็บเล็ต */
+  }
+}
+
+@media (min-width: 1024px) {
+  #modal .relative {
+    max-width: 700px; /* ขยายเพิ่มสำหรับเดสก์ท็อป */
+  }
+}
 
     #footer {
       height: 70px;
@@ -146,23 +137,22 @@
 
    
    <!-- Modal เพิ่มข้อมูล -->
- <div id="modal" class="hidden">
+ <div id="modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
 
-    <div class="relative top-5 mx-auto p-0 border w-96 shadow-lg rounded-md bg-white flex flex-col max-h-[80vh] ">
+    <div class="relative top-5 mx-auto p-0 border w-96 shadow-lg rounded-md bg-white">
       <!-- Header -->
       <div class="bg-blue-500 text-white p-4 rounded-t-md modal-header">
-        <h3 class="text-lg leading-6 font-medium text-center">เพิ่มข้อมูล</h3>
+        <h3 class="text-lg leading-6 font-medium">เพิ่มข้อมูล</h3>
       </div>
       <!-- Body -->
-      <div class="p-4 overflow-y-auto flex-1">
-   <form id="bookmyForm" method="POST" onsubmit="booksubmitForm(); return false;"  class="grid grid-cols-2 gap-4">
-    <!-- ชื่อผู้จอง -->
-<!--       <div class="form-group col-span-2 sm:col-span-1"> -->
+      <div class="p-4 modal-body">
+   <form id="bookmyForm" method="POST" onsubmit="booksubmitForm(); return false;">
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
      
          <!-- วันที่ออก และ วันที่เข้า -->
     <div class="form-group">
         <label class="block text-sm font-medium text-gray-700">วันที่ออก</label>
-        <input type="date" id="namestartDate" name="namestartDate" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 text-blue-600" required readonly>
+        <input type="date" id="namestartDate" name="namestartDate" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 text-blue-600" required>
     </div>
     <div class="form-group">
         <label class="block text-sm font-medium text-gray-700">วันที่เข้า</label>
@@ -220,16 +210,8 @@
             <option value="พร้อมคนขับ">พร้อมคนขับ</option>
         </select>
     </div>
-
-    <!-- สถานที่ๆไปติดต่อ -->
-    <div class="form-group col-span-2 sm:col-span-2">
-        <label class="block text-sm font-medium text-gray-700">สถานที่ๆไปติดต่อ</label>
-        <input type="text" id="nameloca" name="nameloca" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 text-blue-600" required>
-    </div>
-
-
-
-    <!-- เวลาออก และ เวลาเข้า -->
+    
+      <!-- เวลาออก และ เวลาเข้า -->
     <div class="form-group">
         <label class="block text-sm font-medium text-gray-700">เวลาออก</label>
         <select id="namestartTime" name="namestartTime" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 text-blue-600" required>
@@ -261,6 +243,16 @@
         </select>
     </div>
 
+    <!-- สถานที่ๆไปติดต่อ -->
+    <div class="form-group col-span-2 sm:col-span-2">
+        <label class="block text-sm font-medium text-gray-700">สถานที่ๆไปติดต่อ</label>
+        <input type="text" id="nameloca" name="nameloca" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300 text-blue-600" required>
+    </div>
+
+
+
+  
+
    <input type="hidden" name="referer" id="referer">
 
     <!-- อื่นๆ -->
@@ -271,6 +263,9 @@
 
 
       </div>
+     
+       </form>
+        </div>
       <!-- Footer -->
       <div class="bg-blue-500 p-4 rounded-b-md modal-footer">
         <div class="flex justify-end gap-2">
@@ -278,10 +273,12 @@
           <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">ปิด</button>
         </div>
       </div>
-      </form>
-    </div>
-   <br>
+     
+    
+
+  
   </div>
+</div>
 
   
 <section id="page1" style="display: none;" class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -349,11 +346,13 @@
    <section id="page2" style="display: none;">
   <div id="calendarpage" class="container-fluid mt-4 px-4" style="display:none;">
     <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <!-- Header -->
-        <div class="bg-green-500 text-white py-3 px-6">
-            <h5 class="text-lg font-semibold">ปฏิทินจองรถ</h5>
-          ท่านสามารถกดตรงวันที่เพื่อจองรถได้เลย
-        </div>
+      <div class="bg-blue-500 text-white py-3 px-6 flex justify-between items-center">
+    <h5 class="text-lg font-semibold">ปฏิทินจองรถ</h5>
+ <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">
+    Log out
+</button>
+</div>
+   
         <!-- Body -->
         <div class="p-6">
             <div id="calendar" class="bg-gray-100 p-4 rounded-lg shadow-md"></div><br>
@@ -810,30 +809,30 @@ function deepCompare(a, b) {
       
   
 
-    const wanPhraDays = [
-      "2025-01-06", "2025-01-13", "2025-01-21", "2025-01-28",
-      "2025-02-05", "2025-02-12", "2025-02-20", "2025-02-26",
-      "2025-03-06", "2025-03-13", "2025-03-21", "2025-03-28",
-      "2025-04-05", "2025-04-12", "2025-04-20", "2025-04-26",
-      "2025-05-04", "2025-05-11", "2025-05-19", "2025-05-26",
-      "2025-06-03", "2025-06-10", "2025-06-18", "2025-06-25",
-      "2025-07-03", "2025-07-10", "2025-07-18", "2025-07-25",
-      "2025-08-02", "2025-08-09", "2025-08-17", "2025-08-23",
-      "2025-09-07", "2025-09-15", "2025-09-22", "2025-09-30",
-      "2025-10-07", "2025-10-15", "2025-10-21", "2025-10-19",
-      "2025-11-05", "2025-11-13", "2025-11-20", "2025-11-28",
-      "2025-12-05", "2025-12-13", "2025-12-19", "2025-12-27"
-    ];
+//     const wanPhraDays = [
+//       "2025-01-06", "2025-01-13", "2025-01-21", "2025-01-28",
+//       "2025-02-05", "2025-02-12", "2025-02-20", "2025-02-26",
+//       "2025-03-06", "2025-03-13", "2025-03-21", "2025-03-28",
+//       "2025-04-05", "2025-04-12", "2025-04-20", "2025-04-26",
+//       "2025-05-04", "2025-05-11", "2025-05-19", "2025-05-26",
+//       "2025-06-03", "2025-06-10", "2025-06-18", "2025-06-25",
+//       "2025-07-03", "2025-07-10", "2025-07-18", "2025-07-25",
+//       "2025-08-02", "2025-08-09", "2025-08-17", "2025-08-23",
+//       "2025-09-07", "2025-09-15", "2025-09-22", "2025-09-30",
+//       "2025-10-07", "2025-10-15", "2025-10-21", "2025-10-19",
+//       "2025-11-05", "2025-11-13", "2025-11-20", "2025-11-28",
+//       "2025-12-05", "2025-12-13", "2025-12-19", "2025-12-27"
+//     ];
 
-   const wanPhraEvents = wanPhraDays.map(date => ({
-        title: "\uD83C\uDF15",
-        start: date,
-        allDay: true,
-        backgroundColor: "#311b92",
-        borderColor: "#6366f1",
-        textColor: "#ffffff",
-        isHoliday3: true
-    }));
+//    const wanPhraEvents = wanPhraDays.map(date => ({
+//         title: "\uD83C\uDF15",
+//         start: date,
+//         allDay: true,
+//         backgroundColor: "#311b92",
+//         borderColor: "#6366f1",
+//         textColor: "#ffffff",
+//         isHoliday3: true
+//     }));
 
     $('#calendar').fullCalendar('destroy');
     $('#calendar').fullCalendar({
@@ -865,15 +864,13 @@ function deepCompare(a, b) {
             driver: event.driver,
             approve: event.approve,
             isHoliday: false
-        })), ...cmHolidays, ...wanPhraEvents],
+        })), ...cmHolidays],
         eventRender: function(event, element) {
             element.find('.fc-time').hide();
              if (event.isHolidaycm) {
                 element.find('.fc-title').html(`<div style="text-align:center;">${event.title}<br>Cmหยุด</div>`);
-            }else if (event.isHoliday3) {
-                element.find('.fc-title').html(`<div style="text-align:center;">${event.title}<br>วันพระ</div>`);
             } else {
-                element.find('.fc-title').html(`<div style="text-align:center;">${event.title}<br>${event.starttime} - ${event.endtime}</div>`);
+                element.find('.fc-title').html(`<div style="text-align:center; cursor: pointer;font-size: 12px;">${event.title}<br>${event.starttime} - ${event.endtime}</div>`);
             }
           
                       if (event.status === 'รออนุมัติ') {
@@ -998,8 +995,8 @@ function showDateOptions(selectedDate) {
         showDenyButton: false,
         allowOutsideClick: false,
         footer: `
-          <div style="display: flex; gap: 10px; justify-content: flex-end;">
-          <button onclick="logout()" class="swal2-deny swal2-styled">Log out</button>
+          <div style="display: flex; gap: 10px; justify-content: center;">
+       
             <button id="btn-view" class="swal2-confirm swal2-styled" style="background-color: blue;">ดูรายการจอง</button>
             <button id="btn-book" class="swal2-confirm swal2-styled">จองรถ</button>
             <button id="btn-closs" class="swal2-confirm swal2-styled" style="background-color: gray;">ปิด</button>
