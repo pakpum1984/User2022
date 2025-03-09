@@ -899,6 +899,16 @@ function deepCompare(a, b) {
 }
      
         },
+          dayRender: function(date, cell) {
+    const today = moment().format('YYYY-MM-DD'); // วันที่ปัจจุบันในฟอร์แมตเดียวกับ FullCalendar
+    if (date.format('YYYY-MM-DD') === today) {
+        cell.css({
+            //'border': '3px solid #ff5722', // สีเส้นขอบ (ส้ม) และความหนาของเส้นขอบ
+          'background-color': '#FFDEAD',
+            'border-radius': '5px' // ขอบมน
+        });
+    }
+},
         eventClick: function(event) {
             showDateOptions(event.start.format('YYYY-MM-DD'));
         },
