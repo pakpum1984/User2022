@@ -986,6 +986,9 @@ function fetchAllEvents() {
 function showDateOptions(selectedDate) {
     const selectedUTCDate = new Date(selectedDate + 'T00:00:00Z').toISOString().split('T')[0];
     const formattedDate = moment(selectedUTCDate).format('DD-MM-YYYY');
+    
+    const today = new Date().toISOString().split('T')[0]; // ได้วันที่ปัจจุบันในรูปแบบ YYYY-MM-DD
+    const isPastDate = selectedUTCDate < today; // ตรวจสอบว่าเป็นวันย้อนหลังหรือไม่
 
     Swal.fire({
         title: `วันที่ ${formattedDate}`,
@@ -996,9 +999,8 @@ function showDateOptions(selectedDate) {
         allowOutsideClick: false,
         footer: `
           <div style="display: flex; gap: 10px; justify-content: center;">
-       
             <button id="btn-view" class="swal2-confirm swal2-styled" style="background-color: blue;">ดูรายการจอง</button>
-            <button id="btn-book" class="swal2-confirm swal2-styled">จองรถ</button>
+            ${isPastDate ? '' : '<button id="btn-book" class="swal2-confirm swal2-styled">จองรถ</button>'}
             <button id="btn-closs" class="swal2-confirm swal2-styled" style="background-color: gray;">ปิด</button>
           </div>
         `
@@ -1006,16 +1008,19 @@ function showDateOptions(selectedDate) {
 
     setTimeout(() => {
         document.getElementById("btn-closs").addEventListener("click", () => Swal.close());
-        document.getElementById("btn-book").addEventListener("click", () => {
-            Swal.close();
-            openAddDataModal(selectedUTCDate);
-            $("#calendarpage").hide();
-        });
+        if (!isPastDate) {
+            document.getElementById("btn-book").addEventListener("click", () => {
+                Swal.close();
+                openAddDataModal(selectedUTCDate);
+                $("#calendarpage").hide();
+            });
+        }
         document.getElementById("btn-view").addEventListener("click", () => {
             showAllEventsForDate(selectedUTCDate);
         });
     }, 100);
 }
+
 
 // ฟังก์ชันแสดงรายละเอียดรายการจอง
 function showAllEventsForDate(selectedDate) {
