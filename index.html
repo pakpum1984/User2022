@@ -358,7 +358,7 @@
   
    <section id="page2" style="display: none;">
   <div id="calendarpage" class="container-fluid mt-4 px-4" style="display:none;">
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="bg-gray-100 shadow-lg rounded-lg overflow-hidden">
       <div class="bg-green-500 text-white py-3 px-6 flex justify-between items-center">
     <h5 class="text-lg font-semibold">ปฏิทินจองรถ</h5>
  <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">
@@ -367,8 +367,8 @@
 </div>
    
         <!-- Body -->
-        <div class="p-6">
-            <div id="calendar" class="bg-gray-100 p-4 rounded-lg shadow-md"></div><br>
+        <div class="p-1">
+            <div id="calendar" class="bg-gray-100 p-2 rounded-lg"></div><br>
             <!-- Legend -->
             <div id="container3" class="flex items-center space-x-4">
                 <div class="flex items-center">
@@ -883,7 +883,7 @@ function deepCompare(a, b) {
              if (event.isHolidaycm) {
                 element.find('.fc-title').html(`<div style="text-align:center;">${event.title}<br>Cmหยุด</div>`);
             } else {
-                element.find('.fc-title').html(`<div style="text-align:center; cursor: pointer;font-size: 12px;">${event.title}<br>${event.starttime} - ${event.endtime}</div>`);
+                element.find('.fc-title').html(`<div style="text-align:center; cursor: pointer;font-size: 10px;">${event.title}<br>${event.starttime} - ${event.endtime}</div>`);
             }
           
                       if (event.status === 'รออนุมัติ') {
