@@ -131,6 +131,19 @@
     text-align: center; /* text-center */
 } 
 
+
+          .swal-resize {
+    width: auto !important; /* ให้ขนาดกล่องอัตโนมัติ */
+    max-width: 300px; /* กำหนดความกว้างสูงสุด */
+    padding: 20px; /* เพิ่ม padding ให้ดูดีขึ้น */
+  }
+
+  .swal-custom {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* จัดกึ่งกลางข้อความ */
+  }
+
     </style>
 </head>
 <body>
@@ -937,20 +950,21 @@ function deepCompare(a, b) {
 
             
     
-          function lodingpagetoday() {
-      Swal.fire({
-        position: 'center',
-        title: '<h6 style="font-size:20px;">กำลังอัปเดตข้อมูลการจอง...</h6>',
-        text: 'กรุณารอสักครู่',
-        icon: 'info',
-        showConfirmButton: false,
-        allowOutsideClick: false,
-        willOpen: () => {
-        Swal.showLoading();
-        }
-          });
-          Swal.showLoading();
-        }
+ function lodingpagetoday() {
+  Swal.fire({
+    position: 'center',
+    html: `
+      <div class="swal-custom">
+        <img src="https://cdn-icons-png.flaticon.com/512/189/189792.png" class="animate-spin" width="50">
+        <h6 style="font-size:20px; margin-top:20px;">กำลังอัปเดตข้อมูล...</h6>
+      </div>`,
+    showConfirmButton: false,
+    allowOutsideClick: false,
+    customClass: {
+      popup: 'swal-resize' // ใช้ custom class เพื่อลดขนาด SweetAlert2
+    }
+  });
+}
       
       
       $(document).ready(function() {
