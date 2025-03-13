@@ -132,11 +132,20 @@
 } 
 
 
-          .swal-resize {
-    width: auto !important; /* ให้ขนาดกล่องอัตโนมัติ */
-    max-width: 300px; /* กำหนดความกว้างสูงสุด */
-    padding: 20px; /* เพิ่ม padding ให้ดูดีขึ้น */
-  }
+.swal-resize {
+    height: 155px !important;
+    width: auto !important;
+    max-width: 200px;
+    padding: 0px;
+    border-radius: 1.25rem; /* ขอบโค้งมน */
+    background-color: #ffffff; /* สีพื้นหลัง */
+    box-shadow: 
+        0 6px 10px rgba(0, 0, 0, 0.1), /* เงาเบื้องหลัง */
+        0 2px 4px rgba(0, 0, 0, 0.08), /* เงาใกล้เคียง */
+        inset 0 -3px 5px rgba(0, 0, 0, 0.05), /* เงาด้านใน (ฐาน) */
+        inset 0 3px 5px rgba(255, 255, 255, 0.8); /* แสงสะท้อนด้านบน */
+    transition: box-shadow 0.3s ease, transform 0.2s ease; /* แอนิเมชัน */
+}
 
   .swal-custom {
     display: flex;
@@ -932,31 +941,13 @@ function deepCompare(a, b) {
     cachedEventsData = data;
 }
 
-
-         function lodingpagetodayswal() {
-      Swal.fire({
-        position: 'center',
-        title: '<h6 style="font-size:20px;">กำลังอัปเดตข้อมูลการจอง...</h6>',
-        text: 'กรุณารอสักครู่',
-        icon: 'info',
-        showConfirmButton: false,
-        allowOutsideClick: false,
-        willOpen: () => {
-        Swal.showLoading();
-        }
-          });
-          Swal.showLoading();
-        }
-
-            
-    
- function lodingpagetoday() {
+function lodingpagetoday() {
   Swal.fire({
     position: 'center',
     html: `
       <div class="swal-custom">
-        <img src="https://cdn-icons-png.flaticon.com/512/189/189792.png" class="animate-spin" width="50">
-        <h6 style="font-size:20px; margin-top:20px;">กำลังอัปเดตข้อมูล...</h6>
+        <img src="https://cdn-icons-png.flaticon.com/512/189/189792.png" class="animate-spin" width="40" style="margin-top:20px;">
+        <h6 style="font-size:15px; margin-top:20px; font-weight: bold;">กำลังอัปเดตข้อมูล...</h6>
       </div>`,
     showConfirmButton: false,
     allowOutsideClick: false,
