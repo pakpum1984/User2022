@@ -68,6 +68,13 @@
           height:10px;
           border-radius: 20px;
       }
+       .color-box4 {
+          background-color: brown; /* สีพื้นหลังของกล่อง */
+          padding: 10px;
+          text-align: center;
+          height:10px;
+          border-radius: 20px;
+      }
   #modal {
       z-index: 1000;
    
@@ -392,6 +399,8 @@
                     <div class="w-4 h-4 bg-blue-500 rounded-sm"></div>
                     <p class="ml-2 text-sm text-gray-600">= เสร็จงาน</p>
                 </div>
+            <div class="w-4 h-4 rounded-sm" style="background-color: #8B4513;"></div>
+<p class="ml-2 text-sm text-gray-600">= จองหลายวัน</p>
             </div>
         
            
@@ -763,35 +772,8 @@ function deepCompare(a, b) {
 }
 
         // ฟังก์ชันแสดงปฏิทิน
-    function renderData(data) {
-    // const thaiHolidays = [
-    //     { title: "วันปีใหม่", date: "2025-01-01" },
-    //     { title: "วันมาฆบูชา", date: "2025-02-12" },
-    //     { title: "วันจักรี", date: "2025-04-06" },
-    //     { title: "วันสงกรานต์", date: "2025-04-13" },
-    //     { title: "วันสงกรานต์", date: "2025-04-14" },
-    //     { title: "วันสงกรานต์", date: "2025-04-15" },
-    //     { title: "วันสงกรานต์", date: "2025-04-16" },
-    //     { title: "วันแรงงาน", date: "2025-05-01" },
-    //     { title: "วันฉัตรมงคล", date: "2025-05-04" },
-    //     { title: "หยุดชดเชยวันฉัตรมงคล", date: "2025-05-05" },
-    //     { title: "วันพืชมงคล", date: "2025-05-09" },
-    //     { title: "วันวิสาขบูชา", date: "2025-05-11" },
-    //     { title: "หยุดชดเชยวันวิสาขบูชา", date: "2025-05-12" },
-    //     { title: "วันเฉลิมราชินีรัชกาลที่10", date: "2025-06-03" },
-    //     { title: "วันอาสาฬหบูชา", date: "2025-07-10" },
-    //     { title: "วันเข้าพรรษา", date: "2025-07-11" },
-    //     { title: "วันพระบรมราชสมภพรัชกาลที่10", date: "2025-07-28" },
-    //     { title: "วันแม่แห่งชาติ", date: "2025-08-12" },
-    //     { title: "วันคล้ายวันสวรรคตรัชกาลที่9", date: "2025-10-13" },
-    //     { title: "วันปิยมหาราช", date: "2025-10-23" },
-    //     { title: "วันพ่อแห่งชาติ", date: "2025-12-05" },
-    //     { title: "วันรัฐธรรมนูญ", date: "2025-12-10" },
-    //     { title: "วันคริสต์มาส", date: "2025-12-25" },
-    //     { title: "วันสิ้นปี", date: "2025-12-31" }
-    // ];
-      
-        const cmthaiHolidays = [
+function renderData(data) {
+    const cmthaiHolidays = [
         { title: "วันปีใหม่", date: "2025-01-01" },
         { title: "วันมาฆบูชา", date: "2025-02-12" },
         { title: "วันสงกรานต์", date: "2025-04-12" },
@@ -809,52 +791,16 @@ function deepCompare(a, b) {
         { title: "วันสิ้นปี", date: "2025-12-31" }
     ];
 
-    //  const holidays = thaiHolidays.map(holiday => ({
-    //     title: holiday.title,
-    //     start: holiday.date,
-    //     allDay: true,
-    //     backgroundColor: "#d81b60",
-    //     borderColor: "#e11d48",
-    //     textColor: "#ffffff",
-    //     isHoliday: true
-    // }));
-      
-   const cmHolidays = cmthaiHolidays.map(holiday => ({
-    title: holiday.title,
-    start: holiday.date,
-    allDay: true,
-    backgroundColor: "#e51c23",
-    borderColor: "#e11d48",
-    textColor: "#ffffff",
-    isHolidaycm: true
-}));
-      
-  
-
-//     const wanPhraDays = [
-//       "2025-01-06", "2025-01-13", "2025-01-21", "2025-01-28",
-//       "2025-02-05", "2025-02-12", "2025-02-20", "2025-02-26",
-//       "2025-03-06", "2025-03-13", "2025-03-21", "2025-03-28",
-//       "2025-04-05", "2025-04-12", "2025-04-20", "2025-04-26",
-//       "2025-05-04", "2025-05-11", "2025-05-19", "2025-05-26",
-//       "2025-06-03", "2025-06-10", "2025-06-18", "2025-06-25",
-//       "2025-07-03", "2025-07-10", "2025-07-18", "2025-07-25",
-//       "2025-08-02", "2025-08-09", "2025-08-17", "2025-08-23",
-//       "2025-09-07", "2025-09-15", "2025-09-22", "2025-09-30",
-//       "2025-10-07", "2025-10-15", "2025-10-21", "2025-10-19",
-//       "2025-11-05", "2025-11-13", "2025-11-20", "2025-11-28",
-//       "2025-12-05", "2025-12-13", "2025-12-19", "2025-12-27"
-//     ];
-
-//    const wanPhraEvents = wanPhraDays.map(date => ({
-//         title: "\uD83C\uDF15",
-//         start: date,
-//         allDay: true,
-//         backgroundColor: "#311b92",
-//         borderColor: "#6366f1",
-//         textColor: "#ffffff",
-//         isHoliday3: true
-//     }));
+    const cmHolidays = cmthaiHolidays.map(holiday => ({
+        title: holiday.title,
+        start: holiday.date,
+        allDay: true,
+        backgroundColor: "#e51c23",
+        borderColor: "#e11d48",
+        textColor: "#ffffff",
+        isHolidaycm: true,
+        order: 2 // ลำดับต่ำสุดสำหรับวันหยุด
+    }));
 
     $('#calendar').fullCalendar('destroy');
     $('#calendar').fullCalendar({
@@ -870,67 +816,113 @@ function deepCompare(a, b) {
         nextDayThreshold: '00:00:00',
         dayNamesShort: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],
         showNonCurrentDates: false,
-        events: [...data.map(event => ({
-            id: event.id,
-            title: event.title,
-            start: moment(event.startday, 'YYYY-MM-DD'),
-            end: moment(event.endday, 'YYYY-MM-DD').add(1, 'days'),
-            allDay: true,
-            status: event.status,
-            starttime: event.starttime,
-            endtime: event.endtime,
-            namebook: event.namebook,
-            loca: event.loca,
-            dep: event.dep,
-            other: event.other,
-            driver: event.driver,
-            approve: event.approve,
-            isHoliday: false
-        })), ...cmHolidays],
+        eventOrder: 'order', // จัดลำดับอีเว้นท์ตามคุณสมบัติ order
+        events: [
+            ...data.map(event => {
+                const startDate = moment(event.startday, 'YYYY-MM-DD');
+                const endDate = moment(event.endday, 'YYYY-MM-DD');
+                const daysDiff = endDate.diff(startDate, 'days');
+
+                const dailyEvents = [];
+                for (let i = 0; i <= daysDiff; i++) {
+                    const currentDate = startDate.clone().add(i, 'days');
+                    dailyEvents.push({
+                        id: event.id + '_' + i,
+                        title: event.title,
+                        start: currentDate.format('YYYY-MM-DD'),
+                        allDay: true,
+                        status: event.status,
+                        starttime: event.starttime,
+                        endtime: event.endtime,
+                        namebook: event.namebook,
+                        loca: event.loca,
+                        dep: event.dep,
+                        other: event.other,
+                        driver: event.driver,
+                        approve: event.approve,
+                        isMultiDay: daysDiff > 0,
+                        dayNumber: i + 1,
+                        totalDays: daysDiff + 1,
+                        order: daysDiff > 0 ? 0 : 1 // อีเว้นท์หลายวัน (order: 0) อยู่ด้านบน, อีเว้นท์วันเดียว (order: 1)
+                    });
+                }
+                return dailyEvents;
+            }).flat(),
+            ...cmHolidays
+        ],
         eventRender: function(event, element) {
             element.find('.fc-time').hide();
-             if (event.isHolidaycm) {
+            if (event.isHolidaycm) {
                 element.find('.fc-title').html(`<div style="text-align:center;">${event.title}<br>Cmหยุด</div>`);
             } else {
-                element.find('.fc-title').html(`<div style="text-align:center; cursor: pointer;font-size: 10px;">${event.title}<br>${event.starttime} - ${event.endtime}</div>`);
+                let timeText = '';
+                if (event.isMultiDay) {
+                    if (event.dayNumber === 1) {
+                        timeText = `ออก ${event.starttime}`;
+                        dateInfo = `เริ่ม: ${moment(event.start).format('DD/MM/YYYY')}`;
+                    } else if (event.dayNumber === event.totalDays) {
+                        timeText = `เข้า ${event.endtime}`;
+                        dateInfo = `สิ้นสุด: ${moment(event.start).format('DD/MM/YYYY')}`;
+                    } else {
+                        timeText = `${event.starttime} - ${event.endtime}`;
+                    }
+                } else {
+                    timeText = `${event.starttime} - ${event.endtime}`;
+                }
+
+                element.find('.fc-title').html(`
+                    <div style="text-align:center; cursor: pointer;font-size: 10px;">
+                        ${event.title}<br>${timeText}
+                    </div>
+                `);
             }
-          
-                      if (event.status === 'รออนุมัติ') {
-                element.css({ 'background-color': '#facc15', 'border-radius': '5px', 'padding': '1px' });
+
+            // กำหนดสีตามสถานะ
+            if (event.status === 'รออนุมัติ') {
+                element.css({ 
+                    'background-color': '#facc15', // สีเหลืองสำหรับรออนุมัติ (ทั้งหลายวันและวันเดียว)
+                    'border-radius': '5px', 
+                    'padding': '1px' 
+                });
                 element.find('.fc-title').css('color', '#1f2937');
             } else if (event.status === 'อนุมัติ') {
-                element.css({ 'background-color': '#16a34a', 'border-radius': '5px', 'padding': '1px' });
+                element.css({ 
+                    'background-color': event.isMultiDay ? '#8B4513' : '#16a34a', // น้ำตาลสำหรับหลายวัน, เขียวสำหรับวันเดียว
+                    'border-radius': '5px', 
+                    'padding': '1px' 
+                });
                 element.find('.fc-title').css('color', '#ffffff');
             } else if (event.status === 'ส่งคืน') {
-                element.css({ 'background-color': '#3b82f6', 'border-radius': '5px', 'padding': '1px' });
+                element.css({ 
+                    'background-color': '#3b82f6', 
+                    'border-radius': '5px', 
+                    'padding': '1px' 
+                });
                 element.find('.fc-title').css('color', '#ffffff');
             } else if (event.status === 'กำลังใช้งาน') {
-    element.css({ 'background-color': '#ef4444', 'border-radius': '5px', 'padding': '1px' });
-    element.find('.fc-title').css({ 'color': '#ffffff', 'display': 'flex', 'align-items': 'center' });
-
-    // เพิ่มไอคอนรูปล้อรถหมุน (ใช้ FontAwesome)
-   
-   element.find('.fc-title').html(`
-  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;">
-    <i class="fas fa-car-side fa-shake"></i> 
-    <span>${event.status} ${event.title}</span>
-    <span>${event.starttime} - ${event.endtime}</span>
-  </div>
-`);
-
-}
-     
+                element.css({ 
+                    'background-color': '#ef4444', 
+                    'border-radius': '5px', 
+                    'padding': '1px' 
+                });
+                element.find('.fc-title').html(`
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%;">
+                        <i class="fas fa-car-side fa-shake"></i> 
+                        <span>${event.status} ${event.title}</span>
+                        <span>${event.starttime} - ${event.endtime}</span>
+                    </div>
+                `);
+            }
         },
-          dayRender: function(date, cell) {
-    const today = moment().format('YYYY-MM-DD'); // วันที่ปัจจุบันในฟอร์แมตเดียวกับ FullCalendar
-    if (date.format('YYYY-MM-DD') === today) {
-        cell.css({
-            //'border': '3px solid #ff5722', // สีเส้นขอบ (ส้ม) และความหนาของเส้นขอบ
-          'background-color': '#FFDEAD',
-            'border-radius': '5px' // ขอบมน
-        });
-    }
-},
+        dayRender: function(date, cell) {
+            const today = moment().format('YYYY-MM-DD');
+            if (date.format('YYYY-MM-DD') === today) {
+                cell.css({
+                    'background-color': '#FFDEAD',
+                    'border-radius': '5px'
+                });
+            }
+        },
         eventClick: function(event) {
             showDateOptions(event.start.format('YYYY-MM-DD'));
         },
