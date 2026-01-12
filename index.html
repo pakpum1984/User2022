@@ -1281,7 +1281,7 @@ function booksubmitForm() {
       const formEnd = moment(nameendDate + ' ' + nameendTime, 'YYYY-MM-DD HH:mm');
 
       const isExcludedTitle = ['ฝากงาน', 'ติดรถไปติดต่องานด้วย'].includes(namecar);
-      const isDriverMatch = (event.driver === "ภาคภูมิ เรือนมูล");
+      const isDriverMatch = (event.driver === "ภาคภูมิ1 เรือนมูล");
       const isOverlap = (formStart.isSameOrBefore(eventEnd) && formEnd.isSameOrAfter(eventStart));
 
       if (isExcludedTitle) {
