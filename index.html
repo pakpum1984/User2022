@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กำลังเปลี่ยนหน้า...</title>
+    <!-- Redirect ด้วย meta (ทำงานเร็ว) -->
     <meta http-equiv="refresh" content="0; url=https://test-fe28a.web.app">
+    <!-- Redirect ด้วย JavaScript เป็นตัวสำรอง -->
+    <script>
+        window.location.replace("https://test-fe28a.web.app");
+        // หรือจะใช้ location.href ก็ได้ แต่ replace จะไม่เก็บหน้าเก่าไว้ใน history
+    </script>
 </head>
 <body>
-    <p>Redirecting to <a href="https://test-fe28a.web.app">https://test-fe28a.web.app</a></p>
+    <p>กำลังเปลี่ยนหน้าไปยัง <a href="https://test-fe28a.web.app">https://test-fe28a.web.app</a>...</p>
+    <p>ถ้าไม่เปลี่ยนอัตโนมัติ กรุณาคลิกที่ลิงก์ด้านบน</p>
 </body>
 </html>
